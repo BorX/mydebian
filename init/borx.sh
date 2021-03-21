@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 umask 0022
- 
+
 export SHELL=bash
- 
+
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 export HISTTIMEFORMAT="%m/%d %H:%M "
 export HISTFILESIZE=1000
 export HISTSIZE=1000
 export HISTIGNORE="&:bg:fg:h"
-export HISTCONTROL=ignoreboth
+
 export LANG='fr_FR.utf8'
 unset TMOUT
 shopt -s checkwinsize
@@ -24,7 +24,12 @@ PS1=$PS1'@\h \[\e[1;32m\]\w\[\e[0;31m\]]\[\e[33m\]'
 [ $(id -u) -eq 0 ] && PS1=$PS1'#' || PS1=$PS1'$'
 export PS1=$PS1'\[\e[0m\] '
 umask 0077
-type vim &>/dev/null && alias vi=vim
+
+which vim &>/dev/null && {
+	alias vi=vim
+	export EDITOR="$(which vim)"
+}
+
 export LS_OPTIONS='-aF --color=auto'
 eval "$(dircolors)"
 alias ls='ls $LS_OPTIONS'
@@ -54,4 +59,3 @@ alias ........='cd ../../../../../../..'
 alias .........='cd ../../../../../../../..'
 alias ..........='cd ../../../../../../../../..'
 alias ...........='cd ../../../../../../../../../..'
- 

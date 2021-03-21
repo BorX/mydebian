@@ -27,23 +27,132 @@ set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
-"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"if has("autocmd")
+"    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"endif
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
-"filetype plugin indent on
+"if has("autocmd")
+"   filetype plugin indent on
+"endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-set showcmd		" Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
-set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden		" Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
+set showcmd         " Show (partial) command in status line.
+set showmatch       " Show matching brackets.
+"set ignorecase     " Do case insensitive matching
+set smartcase       " Do smart case matching
+set incsearch       " Incremental search
+"set autowrite      " Automatically save before commands like :next and :make
+"set hidden         " Hide buffers when they are abandoned
+"set mouse=a        " Enable mouse usage (all modes)
 
 set nowrap
+
+"filetype on " Enable filetype detection
+"filetype indent on " Enable filetype-specific indenting
+"filetype plugin on " Enable filetype-specific plugins
+
+set confirm
+"set autowriteall
+
+set showmode " Show current mode
+
+set autoread " auto read when file is changed from outside
+
+set wildmenu " Better command-line completion
+"set wildchar=<TAB> " start wild expansion in the command line using <TAB>
+"set wildmode=list:longest,full " command <Tab> completion, list matches, then longest common part, then all.
+
+" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
+" mapping of <C-L> below)
 set hlsearch
 
+" Display the cursor position on the last line of the screen or in the status
+" line of a window
+set ruler
+
+" status line {
+" Always display the status line, even if only one window is displayed
+set laststatus=2
+set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
+set statusline+=\ \ \ [%{&ff}/%Y]
+set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
+set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
+
+function! CurDir()
+	let curdir = substitute(getcwd(), $HOME, "~", "")
+	return curdir
+endfunction
+
+function! HasPaste()
+	if &paste
+		return '[PASTE]'
+	else
+		return ''
+	endif
+endfunction
+
+"}
+
+" Set the command window height to 2 lines, to avoid many cases of having to
+" "press <Enter> to continue"
+set cmdheight=2
+
+" Display line numbers on the left
+set number
+
+" Indentation settings according to personal preference.
+
+" Indentation settings for using 2 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+"set shiftwidth=2
+"set softtabstop=2
+"set expandtab
+" Indentation settings for using hard tabs for indent. Display tabs as
+" two characters wide.
+set shiftwidth=2
+set tabstop=2
+
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+map Y y$
+
+" Map <C-L> (redraw screen) to also turn off search highlighting until the
+" next search
+nnoremap <C-L> :nohl<CR><C-L>
+ 
+"BorXinoremap (      ()<Left>
+"BorXinoremap (<CR>  (<CR>)<Esc>O
+"BorXinoremap ((     (
+"BorXinoremap ()     ()
+
+"BorXinoremap {      {}<Left>
+"BorXinoremap {<CR>  {<CR>}<Esc>O
+"BorXinoremap {{     {
+"BorXinoremap {}     {}
+
+"BorXinoremap "      ""<Left>
+"BorXinoremap "<CR>  "<CR>"<Esc>O
+"BorXinoremap ""     ""
+
+set nobackup " no *~ backup files
+"set backup
+"set undofile
+"set undolevels=1000 "maximum number of changes that can be undone
+"set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+set cursorline
+highlight CursorLine cterm=NONE ctermbg=black "ctermfg=white guibg=darkred guifg=white
+set background&
+
+" ignore these files while expanding wild chars
+set wildignore=*.o,*.class,*.pyc
+
+"BorXset autoindent " auto indentation
+set copyindent " copy the previous indentation on autoindenting
+set smarttab " insert tabs on the start of a line according to context
+autocmd! bufwritepost .vimrc source ~/.vimrc " auto reload vimrc when editing it
+
+colorscheme desert
