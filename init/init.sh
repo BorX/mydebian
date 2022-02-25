@@ -6,7 +6,7 @@ ROOT_DIR="$(cd "$(dirname "$0")"; pwd)"
 
 apt-get --yes --quiet update
 apt-get --yes --quiet full-upgrade
-apt-get --yes --quiet install procps locales bash-completion vim curl wget ncat rsync man most git openssh-client ansible ansible-lint sshpass tree apt-transport-https ca-certificates gnupg
+apt-get --yes --quiet install procps locales man bash-completion vim lsof git curl wget ncat jq jc pv most colordiff tree ncdu apt-transport-https ca-certificates gnupg rsync openssh-client ansible ansible-lint sshpass openjdk-11-jdk tmux
 apt-get --yes --quiet autoclean
 apt-get --yes --quiet autoremove
 
