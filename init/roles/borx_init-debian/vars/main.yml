@@ -1,0 +1,4 @@
+---
+install_pkg_term: no
+install_pkg_dev: yes
+install_pkg_desktop: no

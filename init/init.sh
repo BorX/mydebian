@@ -8,7 +8,7 @@ apt-get --yes --quiet update
 
 apt-get --yes --quiet install ansible
 cd "$ROOT_DIR"
-ansible-playbook init-localhost.yml
+ansible-playbook init-localhost.yml -e install_pkg_term=yes
 
 # dpkg-reconfigure tzdata && dpkg-reconfigure locales
 

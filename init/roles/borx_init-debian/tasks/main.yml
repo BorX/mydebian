@@ -19,17 +19,19 @@
     state: latest
 
 - name: 'Installation des packages pour terminaux'
-  when: 1 == 2
+  when: install_pkg_term|bool
   apt:
     name: [tmux]
     state: latest
 
 - name: 'Installation des packages de développement'
+  when: install_pkg_dev|bool
   apt:
     name: [openjdk-11-jdk, ansible-lint]
     state: latest
 
 - name: 'Installation des packages Desktop'
+  when: install_pkg_desktop|bool
   apt:
     name: [terminator, keepass2, xdotool, vlc]
     state: latest
