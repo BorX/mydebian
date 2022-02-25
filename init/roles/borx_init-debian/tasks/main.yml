@@ -1,0 +1,72 @@
+---
+- name: 'APT : Activation des dépôt Backports'
+  copy:
+    dest: /etc/apt/preferences.d/backports
+    backup: yes
+    owner: root
+    group: root
+    mode:  '0644'
+    src: apt_preferences_backports
+
+- name: 'APT : Mise à jour des packages à la dernière version'
+  apt:
+    update_cache: yes
+    upgrade: full
+
+- name: 'Installation des packages communs'
+  apt:
+    name: [procps, locales, man, bash-completion, vim, lsof, git, curl, wget, ncat, jq, jc, pv, most, colordiff, tree, ncdu, apt-transport-https, ca-certificates, gnupg, rsync, openssh-client, ansible, sshpass]
+    state: latest
+
+- name: 'Installation des packages pour terminaux'
+  when: 1 == 2
+  apt:
+    name: [tmux]
+    state: latest
+
+- name: 'Installation des packages de développement'
+  apt:
+    name: [openjdk-11-jdk, ansible-lint]
+    state: latest
+
+- name: 'Installation des packages Desktop'
+  apt:
+    name: [terminator, keepass2, xdotool, vlc]
+    state: latest
+
+- name: 'APT : Suppression des paquets inutiles'
+  apt:
+    autoremove: yes
+
+- name: 'APT : Nettoyage du cache'
+  apt:
+    autoclean: yes
+
+- name: 'Vim : Configuration /etc/vim/vimrc.local'
+  copy:
+    dest: /etc/vim/vimrc.local
+    backup: yes
+    owner: root
+    group: root
+    mode:  '0644'
+    src: vimrc.local
+
+- name: 'profile.d : Copie des fichiers de personnalisation du Shell'
+  copy:
+    dest: '/etc/profile.d/{{ item | basename }}'
+    backup: yes
+    owner: root
+    group: root
+    mode:  '0644'
+    src: '{{ item }}'
+  with_fileglob:
+    - '*.sh'
+
+- name: 'Gitconfig : Configuration /root/.gitconfig'
+  copy:
+    dest: /root/.gitconfig
+    backup: yes
+    owner: root
+    group: root
+    mode:  '0600'
+    src: gitconfig
