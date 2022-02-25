@@ -10,6 +10,10 @@ apt-get --yes --quiet install procps locales bash-completion vim curl wget ncat 
 apt-get --yes --quiet autoclean
 apt-get --yes --quiet autoremove
 
+# dpkg-reconfigure tzdata && dpkg-reconfigure locales
+
+curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+
 cp -a "$ROOT_DIR/borx.sh"     /etc/profile.d/
 cp -a "$ROOT_DIR/vimrc.local" /etc/vim/
 cp -a "$ROOT_DIR/gitconfig"   /root/.gitconfig
@@ -18,7 +22,3 @@ sed -i '3iecho /etc/profile' /etc/profile
 for fic in /etc/profile.d/borx.sh /etc/bash.bashrc /root/.profile /root/.bashrc; do
 	sed -i "2iecho $fic" $fic
 done
-
-# dpkg-reconfigure tzdata && dpkg-reconfigure locales
-
-curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
