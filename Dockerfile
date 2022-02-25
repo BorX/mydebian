@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:11
 
 COPY init /opt/init
 RUN bash /opt/init/init.sh
