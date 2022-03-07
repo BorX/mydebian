@@ -15,7 +15,13 @@
 
 - name: 'Installation des packages communs'
   apt:
-    name: [procps, locales, man, bash-completion, vim, lsof, git, curl, wget, ncat, jq, jc, pv, most, colordiff, tree, ncdu, apt-transport-https, ca-certificates, gnupg, rsync, openssh-client, ansible, sshpass]
+    name: [procps, locales, man, bash-completion, vim, lsof, git, curl, wget, ncat, jq, jc, apt-transport-https, ca-certificates, gnupg, rsync, openssh-client, sshpass, pv, most, colordiff, tree, ncdu, neofetch]
+    state: latest
+
+- name: 'Installation des packages DevOps'
+  when: install_pkg_devops|bool
+  apt:
+    name: [pip, ansible]
     state: latest
 
 - name: 'Installation des packages pour terminaux'
@@ -33,7 +39,7 @@
 - name: 'Installation des packages Desktop'
   when: install_pkg_desktop|bool
   apt:
-    name: [terminator, keepass2, xdotool, vlc]
+    name: [libreoffice-l10n-fr, hunspell-fr-classical, mythes-fr, terminator, keepass2, xdotool, vlc] # libdvd-pkg
     state: latest
 
 - name: 'APT : Suppression des paquets inutiles'
