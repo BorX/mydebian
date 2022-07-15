@@ -1,12 +1,15 @@
 ---
 - name: 'APT : Activation des dépôt Backports'
   copy:
-    dest: /etc/apt/preferences.d/backports
+    dest: '/etc/apt/{{ item.path }}'
     backup: yes
     owner: root
     group: root
     mode:  '0644'
-    src: apt_preferences_backports
+    src: '{{ item.filename }}'
+  loop:
+  - { filename: 'apt_backports_sources',     path: 'sources.list.d/backports.list'}
+  - { filename: 'apt_backports_preferences', path: 'preferences.d/backports'}
 
 - name: 'APT : Mise à jour des packages à la dernière version'
   apt:
