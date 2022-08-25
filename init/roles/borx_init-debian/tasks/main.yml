@@ -36,7 +36,7 @@
 - name: 'Installation des packages de développement'
   when: install_pkg_dev|bool
   apt:
-    name: [openjdk-11-jdk, ansible-lint]
+    name: [openjdk-17-jdk, ansible-lint]
     state: latest
 
 - name: 'Installation des packages Desktop'
