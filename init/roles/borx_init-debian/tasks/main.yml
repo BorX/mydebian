@@ -18,7 +18,7 @@
 
 - name: 'Installation des packages communs'
   apt:
-    name: [procps, locales, man, bash-completion, vim, lsof, iputils-ping, iproute2, git, curl, wget, ncat, jq, jc, apt-transport-https, ca-certificates, gnupg, rsync, openssh-client, sshpass, pv, most, colordiff, tree, ncdu, neofetch]
+    name: [procps, locales, man, bash-completion, vim, file, dos2unix, lsof, iputils-ping, iproute2, git, curl, wget, ncat, jq, jc, apt-transport-https, ca-certificates, gnupg, rsync, openssh-client, sshpass, pv, most, colordiff, tree, ncdu, neofetch]
     state: latest
 
 - name: 'Installation des packages DevOps'
