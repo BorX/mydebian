@@ -1,0 +1,84 @@
+---
+common_packages_list:
+  - procps
+  - locales
+  - busybox
+  - man
+  - bash-completion
+  - vim
+  - bat
+  - most
+  - colordiff
+  - file
+  - dos2unix
+  - lsof
+  - tmux
+  - git
+  - jq
+  - jc
+  - pv
+  - tree
+  - ncdu
+  - neofetch
+  - curl
+  - wget
+  - ncat
+  - rsync
+  - openssh-client
+  - sshpass
+  - iputils-ping
+  - iproute2
+  - iftop
+  - gnupg
+  - ca-certificates
+  - apt-transport-https
+# - apt-show-versions
+  - borgbackup
+
+install_pkg_devops: no
+devops_packages_list:
+  - pip
+  - ansible
+# - kubectl
+# - google-cloud-sdk
+# - google-cloud-sdk-gke-gcloud-auth-plugin
+
+install_pkg_dev: no
+dev_packages_list:
+  - openjdk-17-jdk
+  - ansible-lint
+
+install_pkg_dev_android: no
+dev_android_packages_list:
+  - adb
+  - android-sdk-platform-tools-common
+
+install_pkg_desktop: no
+desktop_packages_list:
+  - terminator
+  - libreoffice-l10n-fr
+  - hunspell-fr-classical
+  - mythes-fr
+  - hplip-gui
+  - simple-scan
+  - keepass2
+  - xdotool
+  - vlc # libdvd-pkg
+  - vinagre
+  - gparted
+#  - ktorrent
+#  - fasttrack-archive-keyring
+#  - virtualbox
+#  - virtualbox-ext-pack
+
+install_pkg_games: no
+game_packages_list:
+  - 0ad
+  - quadrapassel
+  - granatier
+  - supertuxkart
+
+install_pkg_system: no
+system_packages_list:
+  - hdparm
+  - udftools
