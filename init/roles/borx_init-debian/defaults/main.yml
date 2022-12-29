@@ -78,6 +78,8 @@ game_packages_list:
   - quadrapassel
   - granatier
   - supertuxkart
+  - pax-britannica
+  - briquolo
 
 install_pkg_system: no
 system_packages_list:
