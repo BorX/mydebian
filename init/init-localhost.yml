@@ -2,5 +2,5 @@
 - hosts: localhost
   become: yes
   tasks:
-  - import_role:
+  - ansible.builtin.import_role:
       name: borx_init-debian

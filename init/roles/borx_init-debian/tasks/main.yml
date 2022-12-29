@@ -1,6 +1,6 @@
 ---
 - name: 'APT : Activation des dépôt Backports'
-  copy:
+  ansible.builtin.copy:
     dest: '/etc/apt/{{ item.path }}'
     backup: yes
     owner: root
@@ -12,61 +12,61 @@
   - { filename: 'apt_backports_preferences', path: 'preferences.d/backports'}
 
 - name: 'APT : Mise à jour des packages à la dernière version'
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     upgrade: full
 
 - name: 'Installation des packages communs'
-  apt:
+  ansible.builtin.apt:
     name: '{{ common_packages_list }}'
     state: latest
 
-- name: 'Installation des packages DevOps'
-  when: install_pkg_devops|bool
-  apt:
+- when: install_pkg_devops|bool
+  name: 'Installation des packages DevOps'
+  ansible.builtin.apt:
     name: '{{ devops_packages_list }}'
     state: latest
 
-- name: 'Installation des packages de développement'
-  when: install_pkg_dev|bool
-  apt:
+- when: install_pkg_dev|bool
+  name: 'Installation des packages de développement'
+  ansible.builtin.apt:
     name: '{{ dev_packages_list }}'
     state: latest
 
-- name: 'Installation des packages de développement android'
-  when: install_pkg_dev_android|bool
-  apt:
+- when: install_pkg_dev_android|bool
+  name: 'Installation des packages de développement android'
+  ansible.builtin.apt:
     name: '{{ dev_android_packages_list }}'
     state: latest
 
-- name: 'Installation des packages Desktop'
-  when: install_pkg_desktop|bool
-  apt:
+- when: install_pkg_desktop|bool
+  name: 'Installation des packages Desktop'
+  ansible.builtin.apt:
     name: '{{ desktop_packages_list }}'
     state: latest
 
-- name: 'Installation des packages Games'
-  when: install_pkg_games|bool
-  apt:
+- when: install_pkg_games|bool
+  name: 'Installation des packages Games'
+  ansible.builtin.apt:
     name: '{{ game_packages_list }}'
     state: latest
 
-- name: 'Installation des packages Système'
-  when: install_pkg_system|bool
-  apt:
+- when: install_pkg_system|bool
+  name: 'Installation des packages Système'
+  ansible.builtin.apt:
     name: '{{ system_packages_list }}'
     state: latest
 
 - name: 'APT : Suppression des paquets inutiles'
-  apt:
+  ansible.builtin.apt:
     autoremove: yes
 
 - name: 'APT : Nettoyage du cache'
-  apt:
+  ansible.builtin.apt:
     autoclean: yes
 
 - name: 'Vim : Configuration /etc/vim/vimrc.local'
-  copy:
+  ansible.builtin.copy:
     dest: /etc/vim/vimrc.local
     backup: yes
     owner: root
@@ -75,7 +75,7 @@
     src: vimrc.local
 
 - name: 'profile.d : Copie des fichiers de personnalisation du Shell'
-  copy:
+  ansible.builtin.copy:
     dest: '/etc/profile.d/{{ item | basename }}'
     backup: yes
     owner: root
@@ -86,7 +86,7 @@
     - '*.sh'
 
 - name: 'Gitconfig : Configuration /root/.gitconfig'
-  copy:
+  ansible.builtin.copy:
     dest: /root/.gitconfig
     backup: yes
     owner: root
