@@ -39,6 +39,7 @@ install_pkg_devops: no
 devops_packages_list:
   - pip
   - ansible
+  - podman
 # - kubectl
 # - google-cloud-sdk
 # - google-cloud-sdk-gke-gcloud-auth-plugin

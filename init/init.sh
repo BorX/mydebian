@@ -22,7 +22,7 @@ apt-get --yes --quiet install kubectl
 
 # dpkg-reconfigure tzdata && dpkg-reconfigure locales
 
-curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+#curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 
 sed -i '3iecho /etc/profile' /etc/profile
 for fic in /etc/profile.d/*.sh /etc/bash.bashrc /root/.profile /root/.bashrc; do
