@@ -8,7 +8,7 @@ apt-get --yes --quiet update
 
 apt-get --yes --quiet install ansible
 cd "$ROOT_DIR"
-ansible-playbook init-localhost.yml -e install_pkg_devops=yes -e install_pkg_dev=yes
+ansible-playbook init-localhost.yml -e install_pkg_devops=true -e install_pkg_dev=true
 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add -
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list

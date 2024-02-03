@@ -1,6 +1,8 @@
 ---
-- hosts: localhost
-  become: yes
+- name: Init localhost
+  hosts: localhost
+  become: true
   tasks:
-  - ansible.builtin.import_role:
-      name: borx_init-debian
+    - name: Init
+      ansible.builtin.import_role:
+        name: borx_init-debian
