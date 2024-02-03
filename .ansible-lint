@@ -1,0 +1,6 @@
+skip_list:
+  - yaml[colons]
+  - yaml[commas]
+  - name[casing]
+  - key-order[task]
+  - package-latest
