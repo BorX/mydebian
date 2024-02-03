@@ -31,7 +31,6 @@ common_packages_list:
   - iftop
   - gnupg
   - ca-certificates
-  - apt-transport-https
 # - apt-show-versions
   - borgbackup
 
